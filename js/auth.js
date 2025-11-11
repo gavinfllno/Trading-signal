@@ -1,79 +1,72 @@
 // Simple Authentication System for Trading Signal Website
-// Trading Signal Pro - AI Powered Signals
-
 console.log('🔐 Auth system loaded');
 
 // Login function
 function login(event) {
-    event.preventDefault(); // Prevent form reload
-    
-    console.log('🚀 Login attempt...');
+    event.preventDefault();
     
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     
-    // Simple validation
     if (!username || !password) {
         showMessage('❌ Username dan password harus diisi!', 'error');
         return;
     }
     
-    // Demo accounts
     const demoAccounts = {
         'trader': '123',
-        'admin': 'admin123', 
-        'user': 'user123',
-        'gold': 'gold123'
+        'admin': 'admin123',
+        'user': 'user123'
     };
     
-    // Check credentials
     if (demoAccounts[username] && demoAccounts[username] === password) {
-        // Save to localStorage
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', username);
-        localStorage.setItem('loginTime', new Date().toISOString());
-        
         showMessage('✅ Login berhasil! Redirecting...', 'success');
         
-        // Redirect to dashboard
         setTimeout(() => {
-            window.location.href = 'dashboard.html';
+            window.location.href = 'index.html?login=success';
         }, 1000);
         
     } else {
-        showMessage('❌ Login gagal! Coba: Username: trader Password: 123', 'error');
+        showMessage('❌ Login gagal! Coba: trader / 123', 'error');
     }
 }
 
 // Show message function
 function showMessage(message, type) {
-    // Remove existing message
     const existingMessage = document.querySelector('.message');
     if (existingMessage) {
         existingMessage.remove();
     }
     
-    // Create message element
     const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${type}`;
+    messageDiv.className = 'message ' + type;
     messageDiv.textContent = message;
-    messageDiv.style.cssText = `
-        padding: 12px;
-        margin: 15px 0;
-        border-radius: 8px;
-        text-align: center;
-        font-weight: bold;
-        ${type === 'error' ? 'background: #ff4444; color: white;' : 'background: #00C851; color: white;'}
-    `;
     
-    // Insert after form
+    if (type === 'error') {
+        messageDiv.style.background = '#ff4444';
+        messageDiv.style.color = 'white';
+    } else {
+        messageDiv.style.background = '#00C851';
+        messageDiv.style.color = 'white';
+    }
+    
+    messageDiv.style.padding = '12px';
+    messageDiv.style.margin = '15px 0';
+    messageDiv.style.borderRadius = '8px';
+    messageDiv.style.textAlign = 'center';
+    messageDiv.style.fontWeight = 'bold';
+    
     const form = document.querySelector('.login-form');
-    form.parentNode.insertBefore(messageDiv, form.nextSibling);
+    if (form) {
+        form.parentNode.insertBefore(messageDiv, form.nextSibling);
+    }
 }
 
 // Register function
 function register() {
-    showMessage('📝 Fitur registrasi akan datang! Gunakan akun demo: Username: trader Password: 123', 'info');
+    showMessage('📝 Fitur registrasi akan datang! Gunakan akun demo: trader / 123', 'info');
 }
 
 // Check if user is logged in
@@ -88,7 +81,6 @@ function checkAuth() {
 function logout() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
-    localStorage.removeItem('loginTime');
     alert('👋 Logout berhasil!');
     window.location.href = 'index.html';
 }
@@ -104,7 +96,7 @@ function displayUsername() {
     }
 }
 
-// Auto-check auth on pages that require login
+// Auto-check auth
 if (window.location.pathname.includes('dashboard.html')) {
     checkAuth();
 }
