@@ -92,9 +92,9 @@ function logout() {
     showMessage('👋 Logout berhasil!', 'success');
     
     setTimeout(() => {
-        window.location.href = 'index.html';
-    }, 1500);
-}
+    console.log('🔄 Redirecting to dashboard...');
+    window.location.href = 'https://gavinflino.github.io/trading-signal-website/dashboard.html';
+}, 1000);
 
 // Display username if logged in
 function displayUsername() {
