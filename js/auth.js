@@ -18,10 +18,10 @@ function login(event) {
         return;
     }
     
-    // Demo accounts - BISA DITAMBAHIN
+    // Demo accounts
     const demoAccounts = {
         'trader': '123',
-        'admin': 'admin123',
+        'admin': 'admin123', 
         'user': 'user123',
         'gold': 'gold123'
     };
@@ -33,21 +33,15 @@ function login(event) {
         localStorage.setItem('username', username);
         localStorage.setItem('loginTime', new Date().toISOString());
         
-        showMessage('✅ Login berhasil!', 'success');
-
-// Force redirect dengan full URL
-setTimeout(() => {
-    const baseUrl = window.location.origin + '/trading-signal-website/';
-    window.location.href = baseUrl + 'dashboard.html';
-}, 1000);
+        showMessage('✅ Login berhasil! Redirecting...', 'success');
         
-        // Redirect to dashboard after 1 second
+        // Redirect to dashboard
         setTimeout(() => {
             window.location.href = 'dashboard.html';
         }, 1000);
         
     } else {
-        showMessage('❌ Login gagal! Coba:\nUsername: trader\nPassword: 123', 'error');
+        showMessage('❌ Login gagal! Coba: Username: trader Password: 123', 'error');
     }
 }
 
@@ -77,9 +71,9 @@ function showMessage(message, type) {
     form.parentNode.insertBefore(messageDiv, form.nextSibling);
 }
 
-// Register function (placeholder)
+// Register function
 function register() {
-    showMessage('📝 Fitur registrasi akan datang! Gunakan akun demo:\nUsername: trader\nPassword: 123', 'info');
+    showMessage('📝 Fitur registrasi akan datang! Gunakan akun demo: Username: trader Password: 123', 'info');
 }
 
 // Check if user is logged in
@@ -95,12 +89,9 @@ function logout() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
     localStorage.removeItem('loginTime');
-    showMessage('👋 Logout berhasil!', 'success');
-    
-    setTimeout(() => {
-    console.log('🔄 Redirecting to dashboard...');
-    window.location.href = 'https://gavinflino.github.io/trading-signal-website/dashboard.html';
-}, 1000);
+    alert('👋 Logout berhasil!');
+    window.location.href = 'index.html';
+}
 
 // Display username if logged in
 function displayUsername() {
@@ -114,9 +105,7 @@ function displayUsername() {
 }
 
 // Auto-check auth on pages that require login
-if (window.location.pathname.includes('dashboard.html') || 
-    window.location.pathname.includes('bot-selection.html') ||
-    window.location.pathname.includes('signal-page.html')) {
+if (window.location.pathname.includes('dashboard.html')) {
     checkAuth();
 }
 
