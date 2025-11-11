@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Trading Signal Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Dashboard Specific Styles */
+        .dashboard-header {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+        
+        .welcome-message {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 0 1rem;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00d4ff;
+            display: block;
+        }
+        
+        .dashboard-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 0 1rem;
+            margin-top: 3rem;
+        }
+        
+        .action-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 2px solid transparent;
+        }
+        
+        .action-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+        }
+        
+        .action-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .logout-btn {
+            background: #ff4444;
+            margin-top: 2rem;
+        }
+        
+        .logout-btn:hover {
+            background: #cc0000;
+        }
+    </style>
+</head>
+<body onload="loadDashboard()">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>🤖 TradingSignal</h2>
+        </div>
+        <div class="nav-links">
+            <span class="username-display">Trader</span>
+            <a href="index.html">Home</a>
+            <button onclick="logout()" class="btn logout-btn">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <h1>Dashboard Trading</h1>
+        <div class="welcome-message">
+            Selamat datang, <span class="username-display">Trader</span>! 👋
+        </div>
+        <p>Kelola sinyal trading dan bot AI Anda dari sini</p>
+    </section>
+
+    <!-- Statistics -->
+    <div class="dashboard-stats">
+        <div class="stat-card">
+            <span class="stat-number">0</span>
+            <span>Signals Today</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">0%</span>
+            <span>Success Rate</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">0</span>
+            <span>Active Bots</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">$0</span>
+            <span>Potential Profit</span>
+        </div>
+    </div>
+
+    <!-- Action Cards -->
+    <div class="dashboard-actions">
+        <div class="action-card" onclick="goToBotSelection()">
+            <div class="action-icon">🤖</div>
+            <h3>Pilih Bot Trading</h3>
+            <p>Pilih strategi bot AI untuk scan market</p>
+        </div>
+        
+        <div class="action-card" onclick="goToSignalPage()">
+            <div class="action-icon">🎯</div>
+            <h3>Lihat Sinyal</h3>
+            <p>Lihat sinyal trading yang ditemukan bot</p>
+        </div>
+        
+        <div class="action-card" onclick="showHistory()">
+            <div class="action-icon">📊</div>
+            <h3>Riwayat Trading</h3>
+            <p>Lihat history sinyal sebelumnya</p>
+        </div>
+        
+        <div class="action-card" onclick="showSettings()">
+            <div class="action-icon">⚙️</div>
+            <h3>Settings</h3>
+            <p>Atur preferensi trading Anda</p>
+        </div>
+    </div>
+
+    <!-- Demo Message -->
+    <div style="text-align: center; margin-top: 3rem; padding: 1rem; background: rgba(255, 255, 255, 0.1); border-radius: 10px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        <h3>🚀 Fitur Dalam Pengembangan</h3>
+        <p>Website ini masih dalam tahap development. Fitur real trading signals akan segera hadir!</p>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        function loadDashboard() {
+            displayUsername();
+            console.log('📊 Dashboard loaded for:', localStorage.getItem('username'));
+        }
+        
+        function goToBotSelection() {
+            window.location.href = 'bot-selection.html';
+        }
+        
+        function goToSignalPage() {
+            window.location.href = 'signal-page.html';
+        }
+        
+        function showHistory() {
+            alert('📊 Fitur riwayat trading akan datang!');
+        }
+        
+        function showSettings() {
+            alert('⚙️ Fitur settings akan datang!');
+        }
+    </script>
+</body>
+</html>
