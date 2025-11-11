@@ -33,7 +33,13 @@ function login(event) {
         localStorage.setItem('username', username);
         localStorage.setItem('loginTime', new Date().toISOString());
         
-        showMessage('✅ Login berhasil! Redirecting...', 'success');
+        showMessage('✅ Login berhasil!', 'success');
+
+// Force redirect dengan full URL
+setTimeout(() => {
+    const baseUrl = window.location.origin + '/trading-signal-website/';
+    window.location.href = baseUrl + 'dashboard.html';
+}, 1000);
         
         // Redirect to dashboard after 1 second
         setTimeout(() => {
